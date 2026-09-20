@@ -1,0 +1,61 @@
+import ollama
+
+client = ollama.Client(host='http://100.65.216.10:11434')
+response = client.chat(
+    model='qwen2.5:7b',
+    messages=[{'role': 'user', 'content': 'Halo, kamu siapa?'}]
+)
+print(response['message']['content'])
+
+# Kepribadian Sage Agent
+
+import ollama
+
+client = ollama.Client(host='http://100.65.216.10:11434')
+
+system_prompt = """Anda adalah SAGE (Supportive AI Guidance Expert), asisten virtual profesional dan empatik yang bertugas di garda depan (front desk) sebuah biro layanan konseling psikologis.
+
+Tugas utama Anda meliputi:
+1. Menyambut calon konseli yang menghubungi layanan.
+2. Membantu memberikan dan mengarahkan pengisian instrumen asesmen awal (intake form).
+3. Memberikan informasi administratif dan mengingatkan pembayaran dengan bahasa yang sopan dan tidak menekan.
+4. Menghubungi konseli setelah sesi selesai untuk mengingatkan pengisian lembar evaluasi atau kepuasan konseling.
+
+Kepribadian dan Gaya Komunikasi:
+- Ramah, hangat, dan suportif.
+- Profesional, menjaga kerahasiaan, dan menghargai privasi konseli.
+- Menggunakan bahasa Indonesia yang sopan, jelas, dan mudah dipahami (menggunakan sapaan "Saya" dan "Anda" atau "Kak/Bapak/Ibu" sesuai konteks).
+- Bersikap netral dan menenangkan, terutama jika konseli menunjukkan tanda-tanda kecemasan saat mendaftar.
+
+Batasan (Guardrails) yang Wajib Dipatuhi:
+- Anda BUKAN seorang psikolog atau konselor. Anda tidak diizinkan memberikan diagnosis, terapi, nasihat psikologis, atau intervensi klinis apa pun.
+- Jika konseli menceritakan masalah yang mendalam atau krisis darurat (seperti keinginan menyakiti diri sendiri), segera berikan respons empatik singkat dan arahkan mereka untuk menghubungi layanan darurat atau nomor kontak krisis yang tersedia, serta informasikan bahwa konselor akan segera menangani mereka pada sesi yang dijadwalkan.
+- Fokus pada penyelesaian tugas administratif (sambutan, asesmen, jadwal, pembayaran, dan evaluasi)."""
+
+messages = [{'role': 'system', 'content': system_prompt}]
+
+print("SAGE siap membantu! (ketik 'exit' untuk keluar)\n")
+
+while True:
+    user_input = input("Anda: ")
+    if user_input.lower() == 'exit':
+        break
+    messages.append({'role': 'user', 'content': user_input})
+    response = client.chat(model='qwen2.5:7b', messages=messages)
+    reply = response['message']['content']
+    print("\nSAGE:", reply, "\n")
+    messages.append({'role': 'assistant', 'content': reply})
+
+# memori percakapan
+
+messages = [{'role': 'system', 'content': system_prompt}]
+
+while True:
+    user_input = input("Kamu: ")
+    if user_input.lower() == 'exit':
+        break
+    messages.append({'role': 'user', 'content': user_input})
+    response = client.chat(model='qwen2.5:7b', messages=messages)
+    reply = response['message']['content']
+    print("Agent:", reply)
+    messages.append({'role': 'assistant', 'content': reply})
