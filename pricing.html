@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Harga — SAGE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3EFE4;--bg-raised:#EAE3D3;--forest:#2E362A;--sage:#5C6E4F;--sage-dim:#7C8B6C;
+    --terracotta:#C17A54;--ink:#2E362A;--muted:rgba(46,54,42,0.62);
+    --border:rgba(46,54,42,0.16);--border-strong:rgba(46,54,42,0.28);
+    box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Karla',sans-serif}
+
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;border-bottom:1px solid var(--border-strong)}
+  .logo{display:flex;align-items:center;gap:6px;font-family:'Fraunces',serif;font-weight:600;font-size:17px}
+  .logo-img{ height: 30px; width: auto; display:block; }
+  .nav-links{display:flex;gap:30px;font-size:14px}
+  .nav-links a{color:var(--muted);text-decoration:none}
+  .nav-links a:hover,.nav-links a.active{color:var(--ink)}
+  .btn-ghost{padding:9px 16px;border-radius:8px;border:1px solid var(--border);color:var(--ink);text-decoration:none;font-size:13.5px;background:transparent}
+  .btn-ghost:hover{background:var(--bg-raised)}
+  @media (max-width:820px){ .nav-links{display:none} }
+
+  main{max-width:1160px;margin:0 auto;padding:60px 32px 40px}
+
+  .head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+  h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,3.6vw,40px);margin:0 0 8px;color:var(--forest)}
+  .head-row p{font-size:14.5px;color:var(--muted);margin:0}
+  .head-row p a{color:var(--sage);font-weight:600;text-decoration:none}
+
+  /* Toggle */
+  .toggle-wrap{display:flex;align-items:center;gap:10px;font-size:13.5px;white-space:nowrap}
+  .toggle-wrap .save{color:var(--terracotta);font-weight:600}
+  .switch{
+    position:relative;width:42px;height:24px;background:var(--forest);border-radius:100px;
+    cursor:pointer;flex-shrink:0;
+  }
+  .switch::after{
+    content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;
+    background:var(--bg);transition:transform .18s ease;
+  }
+  .switch.monthly::after{transform:translateX(18px)}
+
+  /* Grid */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .plan{
+    background:#FBFAF6;border:1px solid var(--border);border-radius:16px;
+    padding:26px 24px;display:flex;flex-direction:column;position:relative;
+  }
+  .plan.reco{border:2px solid var(--forest);padding-top:40px}
+  .reco-tag{
+    position:absolute;top:0;left:0;right:0;background:var(--forest);color:var(--bg);
+    text-align:center;font-size:11.5px;font-weight:600;letter-spacing:.04em;
+    padding:7px;border-radius:14px 14px 0 0;text-transform:uppercase;
+  }
+  .plan-icon{width:32px;height:32px;border-radius:8px;background:var(--bg-raised);margin-bottom:14px}
+  .plan h3{font-family:'Fraunces',serif;font-weight:500;font-size:19px;margin:0 0 8px;color:var(--forest)}
+  .plan .tagline{font-size:13px;line-height:1.6;color:var(--muted);margin:0 0 20px;min-height:60px}
+
+  .price-row{display:flex;align-items:baseline;gap:4px;margin-bottom:2px}
+  .price-row .curr{font-size:14px;color:var(--muted)}
+  .price-row .amount{font-family:'Fraunces',serif;font-weight:500;font-size:36px;color:var(--ink)}
+  .price-unit{font-size:12px;color:var(--muted);margin:0 0 18px}
+
+  .btn-plan{
+    display:block;text-align:center;padding:11px;border-radius:9px;text-decoration:none;
+    font-size:14px;font-weight:600;border:1px solid var(--border-strong);color:var(--ink);margin-bottom:8px;
+  }
+  .plan.reco .btn-plan{background:var(--forest);color:var(--bg);border-color:var(--forest)}
+  .trial-note{font-size:11.5px;color:var(--muted);text-align:center;margin:0 0 20px}
+
+  .feat-list{list-style:none;margin:0;padding:16px 0 0;border-top:1px solid var(--border);font-size:13.5px}
+  .feat-list li{display:flex;gap:8px;padding:6px 0;color:var(--ink)}
+  .feat-list li.off{color:rgba(46,54,42,0.35);text-decoration:line-through}
+  .feat-list li .check{color:var(--sage);flex-shrink:0}
+  .feat-list li.off .check{color:rgba(46,54,42,0.3)}
+
+  @media (max-width:900px){ .plans{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><img src="logo-sage.png" alt="SAGE" class="logo-img"> SAGE</div>
+  <div class="nav-links">
+    <a href="about.html">Tentang</a>
+    <a href="fitur.html">Fitur</a>
+    <a href="pricing.html" class="active">Harga</a>
+    <a href="dokumentasi.html" class="active">Dokumentasi</a>
+  </div>
+  <a class="btn-ghost" href="login.html">Masuk</a>
+</nav>
+
+<main>
+  <div class="head-row">
+    <div>
+      <h1>Pilih paket yang sesuai</h1>
+      <p>Belum yakin paket mana yang cocok? <a href="#">Hubungi kami</a></p>
+    </div>
+    <div class="toggle-wrap">
+      <span>Tahunan <span class="save">(hemat 15%)</span></span>
+      <div class="switch" id="billingSwitch"></div>
+      <span>Bulanan</span>
+    </div>
+  </div>
+
+  <div class="plans">
+
+    <div class="plan">
+      <div class="plan-icon"></div>
+      <h3>Mandiri</h3>
+      <p class="tagline">Untuk konselor yang praktik sendiri dan baru mulai memakai asisten AI.</p>
+      <div class="price-row"><span class="curr">Rp</span><span class="amount price" data-annual="99.000" data-monthly="119.000">99.000</span></div>
+      <p class="price-unit">per konselor, per bulan. Ditagih tahunan.</p>
+      <a class="btn-plan" href="login.html">Coba Gratis</a>
+      <p class="trial-note">Uji coba 14 hari, tanpa kartu kredit</p>
+      <ul class="feat-list">
+        <li><span class="check">✓</span> 1 konselor</li>
+        <li><span class="check">✓</span> 200 pesan AI / bulan</li>
+        <li><span class="check">✓</span> Ringkasan asesmen</li>
+        <li><span class="check">✓</span> Riwayat klien dasar</li>
+        <li class="off"><span class="check">✓</span> Kolaborasi antar konselor</li>
+        <li class="off"><span class="check">✓</span> Dasbor biro</li>
+      </ul>
+    </div>
+
+    <div class="plan reco">
+      <div class="reco-tag">Direkomendasikan</div>
+      <div class="plan-icon" style="background:var(--sage)"></div>
+      <h3>Biro</h3>
+      <p class="tagline">Untuk biro konseling dengan beberapa konselor yang bekerja dalam satu tim.</p>
+      <div class="price-row"><span class="curr">Rp</span><span class="amount price" data-annual="149.000" data-monthly="179.000">149.000</span></div>
+      <p class="price-unit">per konselor, per bulan. Ditagih tahunan.</p>
+      <a class="btn-plan" href="login.html">Coba Gratis</a>
+      <p class="trial-note">Uji coba 14 hari, tanpa kartu kredit</p>
+      <ul class="feat-list">
+        <li><span class="check">✓</span> Konselor tanpa batas</li>
+        <li><span class="check">✓</span> 1.000 pesan AI / konselor / bulan</li>
+        <li><span class="check">✓</span> Ringkasan asesmen &amp; tindak lanjut</li>
+        <li><span class="check">✓</span> Riwayat klien bersama tim</li>
+        <li><span class="check">✓</span> Dasbor biro</li>
+        <li class="off"><span class="check">✓</span> Integrasi khusus &amp; SLA</li>
+      </ul>
+    </div>
+
+    <div class="plan">
+      <div class="plan-icon" style="background:var(--terracotta)"></div>
+      <h3>Lembaga</h3>
+      <p class="tagline">Untuk institusi pendidikan atau jaringan biro dengan kebutuhan skala besar.</p>
+      <div class="price-row"><span class="amount" style="font-size:26px">Hubungi Kami</span></div>
+      <p class="price-unit">Harga disesuaikan kebutuhan lembaga Anda.</p>
+      <a class="btn-plan" href="#">Hubungi Sales</a>
+      <p class="trial-note">Demo langsung dengan tim kami</p>
+      <ul class="feat-list">
+        <li><span class="check">✓</span> Semua di paket Biro, plus:</li>
+        <li><span class="check">✓</span> Pesan AI tanpa batas</li>
+        <li><span class="check">✓</span> Integrasi sistem internal</li>
+        <li><span class="check">✓</span> Dukungan &amp; SLA khusus</li>
+        <li><span class="check">✓</span> Pelatihan onboarding tim</li>
+      </ul>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  const sw = document.getElementById('billingSwitch');
+  const prices = document.querySelectorAll('.price');
+  sw.addEventListener('click', () => {
+    const monthly = sw.classList.toggle('monthly');
+    prices.forEach(el => {
+      el.textContent = monthly ? el.dataset.monthly : el.dataset.annual;
+    });
+  });
+</script>
+</body>
+</html>

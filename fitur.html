@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fitur — SAGE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3EFE4;
+    --bg-raised:#EAE3D3;
+    --forest:#2E362A;
+    --sage:#5C6E4F;
+    --sage-dim:#7C8B6C;
+    --terracotta:#C17A54;
+    --ink:#2E362A;
+    --muted:rgba(46,54,42,0.62);
+    --border:rgba(46,54,42,0.16);
+    --border-strong:rgba(46,54,42,0.28);
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Karla',sans-serif}
+
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;border-bottom:1px solid var(--border-strong);
+  }
+  .logo{display:flex;align-items:center;gap:6px;font-family:'Fraunces',serif;font-weight:600;font-size:17px}
+  .logo-img{width:28px;height:28px;border-radius:7px;background:var(--bg-raised);padding:2px;object-fit:contain;display:block}
+  .nav-links{display:flex;gap:30px;font-size:14px}
+  .nav-links a{color:var(--muted);text-decoration:none}
+  .nav-links a:hover,.nav-links a.active{color:var(--ink)}
+  .btn-ghost{
+    padding:9px 16px;border-radius:8px;border:1px solid var(--border);color:var(--ink);
+    text-decoration:none;font-size:13.5px;background:transparent;
+  }
+  .btn-ghost:hover{background:var(--bg-raised)}
+  @media (max-width:820px){ .nav-links{display:none} }
+
+  main{max-width:1100px;margin:0 auto;padding:70px 32px 40px}
+
+  /* Header dua kolom */
+  .fx-header{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;margin-bottom:80px}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--sage);
+    text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px;
+  }
+  .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--sage)}
+  .fx-header h1{
+    font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,3.4vw,38px);
+    line-height:1.25;margin:0;color:var(--forest);
+  }
+  .fx-header .desc{font-size:15px;line-height:1.75;color:var(--muted);margin:6px 0 0;max-width:44ch}
+  @media (max-width:820px){ .fx-header{grid-template-columns:1fr;gap:20px} }
+
+  /* Baris fitur bernomor */
+  .fx-row{
+    display:grid;grid-template-columns:1fr 1.1fr;gap:52px;align-items:center;
+    padding:44px 0;border-top:1px solid var(--border);
+  }
+  .fx-row .num{font-family:'Fraunces',serif;font-style:italic;color:var(--terracotta);font-size:14px;margin-bottom:14px}
+  .fx-row h2{font-family:'Fraunces',serif;font-weight:500;font-size:22px;margin:0 0 12px;color:var(--forest)}
+  .fx-row p{font-size:14.5px;line-height:1.75;color:var(--muted);margin:0 0 12px;max-width:42ch}
+  .fx-row p:last-child{margin-bottom:0}
+
+  .visual{
+    aspect-ratio:4/3;border-radius:14px;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;position:relative;
+  }
+  .visual svg{width:46%;height:46%}
+  .visual.v1{background:linear-gradient(135deg,#3B4A32,#8AA079)}
+  .visual.v2{background:linear-gradient(135deg,#8A5B3B,#C17A54)}
+  .visual.v3{background:linear-gradient(135deg,#2E362A,#5C6E4F)}
+
+  @media (max-width:820px){
+    .fx-row{grid-template-columns:1fr;gap:22px}
+    .fx-row .visual{order:-1}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><img src="logo-sage.png" alt="SAGE" class="logo-img"><span>SAGE</span></div>
+  <div class="nav-links">
+    <a href="about.html">Tentang</a>
+    <a href="fitur.html" class="active">Fitur</a>
+    <a href="#">Untuk Konselor</a>
+    <a href="#">Dokumentasi</a>
+  </div>
+  <a class="btn-ghost" href="login.html">Masuk</a>
+</nav>
+
+<main>
+  <div class="fx-header">
+    <div>
+      <h1>Apa yang bisa SAGE lakukan?</h1>
+    </div>
+    <p class="desc">
+      Percakapan konseling itu manusiawi dan sering berubah. SAGE dibangun untuk
+      membantu Anda menyelesaikan sesi konseling dari awal hingga akhir.
+    </p>
+  </div>
+
+  <div class="fx-row">
+    <div>
+      <div class="num">01</div>
+      <h2>Ringkasan asesmen kontekstual</h2>
+      <p>
+        Jawaban klien jarang linear — ada jeda, pengulangan, dan cerita yang melompat.
+        SAGE membaca konteks percakapan, bukan hanya kata per kata, untuk merangkum
+        hasil asesmen secara utuh.
+      </p>
+      <p>
+        Ringkasan ini mengikuti kerangka asesmen yang Anda pakai, sehingga tetap
+        relevan secara klinis dan siap Anda tinjau.
+      </p>
+    </div>
+    <div class="visual v1">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="24" r="9" stroke="#F3EFE4" stroke-width="2"/>
+        <path d="M16 52c1-10 8-16 16-16s15 6 16 16" stroke="#F3EFE4" stroke-width="2" stroke-linecap="round"/>
+        <path d="M8 30c2-4 5-6 8-6" stroke="#F3EFE4" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+        <path d="M56 30c-2-4-5-6-8-6" stroke="#F3EFE4" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="fx-row">
+    <div>
+      <div class="num">02</div>
+      <h2>Tindak lanjut yang tersusun sendiri</h2>
+      <p>
+        Setiap sesi berakhir dengan catatan yang berhenti di tengah — perlu ada
+        yang menyambungkannya ke sesi berikutnya.
+      </p>
+      <p>
+        SAGE menyusun draf tindak lanjut berdasarkan sesi sebelumnya, lengkap dengan
+        poin yang perlu ditindaklanjuti, sehingga Anda tinggal menyesuaikan.
+      </p>
+    </div>
+    <div class="visual v2">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="16" y="10" width="32" height="44" rx="4" stroke="#F3EFE4" stroke-width="2"/>
+        <path d="M23 22h18M23 30h18M23 38h11" stroke="#F3EFE4" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="fx-row">
+    <div>
+      <div class="num">03</div>
+      <h2>Rencana intervensi yang bisa dipertanggungjawabkan</h2>
+      <p>
+        Rekomendasi langkah instan tanpa dasar hanya menambah beban, bukan
+        membantu. Rekomendasi yang terlalu cepat sering kehilangan nuansa klinis.
+      </p>
+      <p>
+        SAGE menyusun opsi intervensi berdasarkan riwayat dan kondisi klien,
+        dengan keputusan akhir selalu berada di tangan Anda sebagai konselor.
+      </p>
+    </div>
+    <div class="visual v3">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 8v10M32 46v10M8 32h10M46 32h10" stroke="#F3EFE4" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="32" cy="32" r="12" stroke="#F3EFE4" stroke-width="2"/>
+      </svg>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
